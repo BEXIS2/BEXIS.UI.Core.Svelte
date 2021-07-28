@@ -1,11 +1,13 @@
 {
-  "name": "svelte-bexis-core-ui",
+  "name": "@bexis2/svelte-bexis-core-ui",
   "svelte": "src/index.js",
   "module": "dist/index.mjs",
   "main": "dist/index.js",
   "scripts": {
     "build": "rollup -c",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "init": "npm init --scope bexis2",
+    "link": "npm link"
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^9.0.0",
@@ -19,5 +21,18 @@
   "files": [
     "src",
     "dist"
-  ]
+  ],
+  "description": "*Psst — looking for an app template? Go here --> [sveltejs/template](https://github.com/sveltejs/template)*",
+  "version": "0.0.1",
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BEXIS2/BEXIS.UI.Core.Svelte.git"
+  },
+  "author": "david schöne",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BEXIS2/BEXIS.UI.Core.Svelte/issues"
+  },
+  "homepage": "https://github.com/BEXIS2/BEXIS.UI.Core.Svelte#readme"
 }

@@ -1,1 +1,1 @@
-export { default as default } from './Button.svelte';
+export { default as Button } from './Button.svelte';
