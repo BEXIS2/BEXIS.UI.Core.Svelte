@@ -9,8 +9,11 @@
 <div class="py-3">
  {#if title}
    <h2>{title}</h2>
- {/if}
- <slot name="info" />
+ {/if} <slot name="info" />
+ <div >
+  
+  <slot name="external" ></slot>
+ </div>
  <div class="border p-3">
    <h6 class="text-muted">EXAMPLE</h6>
    <Row>

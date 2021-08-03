@@ -38,7 +38,7 @@
  <Example title="Icon" source={sourceIcon}>
   <Icon/> 
   <span slot="info">
-   Easy change size.
+   Button with icons are used as grid functions in bexis 2.
   </span>
  </Example>
  </Story>
