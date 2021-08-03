@@ -8,7 +8,7 @@
     "prepublishOnly": "npm run build",
     "init": "npm init --scope bexis2",
     "link": "npm link",
-    "storybook": "start-storybook -p 6006 -s ./src/style",
+    "storybook": "start-storybook -p 6006 -s ./storybook-static/css",
     "build-storybook": "build-storybook"
   },
   "devDependencies": {
@@ -33,12 +33,15 @@
     "dist"
   ],
   "description": "bexis ui core framework",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.3",
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
+    "@storybook/addon-cssresources": "^6.2.9",
     "fontawesome-svelte": "^2.0.1",
+    "prismjs": "^1.24.1",
+    "raw-loader": "^4.0.2",
     "svelte-fa": "^2.2.1",
     "sveltestrap": "^5.5.1"
   },

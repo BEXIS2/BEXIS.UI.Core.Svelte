@@ -12,8 +12,6 @@
 
 </script>
 
-<h1>treeview</h1>
-
 <div>
 
 {#if data}

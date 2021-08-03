@@ -4,39 +4,41 @@
  import { Meta, Template, Story } from '@storybook/addon-svelte-csf';
 
  import Treeview from '../../components/Treeview/Treeview.svelte';
- import data from './data.json'
-
- let target ="_blank";
-
- // let args = {
- // href:"api/test/id=",
- // checkboxhref:"api/test/id=",
- // showcheckbox:false,
- // showcount:false,
- // target, 
- // data}
+ import Data from './Data.svelte';
+ import sourceData from '!!raw-loader!./Data.svelte';
+ import Options from './Options.svelte';
+ import sourceOption from '!!raw-loader!./Options.svelte';
+ import Example from '../Example.svelte'
 
 </script>
 
 
 <Meta title="Bexis2/Core/Treeview" 
-component={Treeview} 
-argTypes={{
- href: { control: "text" },
- checkboxhref: { control: "text" },
- showcheckbox: { control: "boolean" },
- showcount: { control: "boolean" },
- target: { control: "text" },
- data: data
-}}
+component={Treeview} source="false"
 />
 
 <Template let:args>
  <Treeview {...args}/>
 </Template>
 
-<Story name="TreeView Default"  />
+<Story name="Data"  >
+ <Example title="Data" source={sourceData}>
+  <Data/> 
+  <p slot="info">
+   This story shows all the colors of the different buttons.
+  </p>
+ </Example>
+ </Story>
 
-<Story name="TreeView Empty data" args={{data:null}} />
+ <Story name="Option"  >
+  <Example title="Option" source={sourceOption}>
+   <Options/> 
+   <span slot="info">
+    This story shows all the colors of the different buttons.
+   </span>
+  </Example>
+  </Story>
+ 
+
 
 

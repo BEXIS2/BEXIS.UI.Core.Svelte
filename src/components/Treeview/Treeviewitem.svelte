@@ -46,17 +46,10 @@
 
   const unsubscribe = selected.subscribe(value => {active = false;});
 
-
-  
 </script>
-
-
-
-
 
 <!-- Item  -->
 <div title={description} >
-
 
   <!-- Expand Icon -->
 
@@ -68,7 +61,6 @@
     </span>
   {/if}
 
-  
 
   {#if showcheckbox} <input type=checkbox bind:checked={active} on:click="{clickCheckboxHandler}">{/if}
 
