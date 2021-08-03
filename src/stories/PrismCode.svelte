@@ -12,11 +12,6 @@
    Prism.highlightElement(_domNode, isAsync);
  });
 </script>
-
-<link
- rel="stylesheet"
- href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/themes/prism-tomorrownight.min.css"
-/> 
 <pre>
  <code class="{classes}" bind:this={_domNode}>
    <slot />
