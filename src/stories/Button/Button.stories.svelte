@@ -2,17 +2,17 @@
 
 <script>
  import { Meta, Story } from '@storybook/addon-svelte-csf';
- import Color from '../Button/Color.svelte'
- import Size from '../Button/Size.svelte'
- import Icon from '../Button/Icon.svelte'
- import sourceColor  from '!!raw-loader!../Button/Color.svelte'
- import sourceSize  from '!!raw-loader!../Button/Size.svelte'
- import sourceIcon  from '!!raw-loader!../Button/Icon.svelte'
+ import Color from './ButtonColor.svelte'
+ import Size from './ButtonSize.svelte'
+ import Icon from './ButtonWithIcon.svelte'
+ import sourceColor  from '!!raw-loader!../Button/ButtonColor.svelte'
+ import sourceSize  from '!!raw-loader!../Button/ButtonSize.svelte'
+ import sourceIcon  from '!!raw-loader!../Button/ButtonWithIcon.svelte'
  import Example from '../Example.svelte'
 
 </script>
 
-<Meta title="Bexis2/Core/Button" 
+<Meta title="Bexis2/Button" 
  component={Color}
 />
 

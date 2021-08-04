@@ -13,7 +13,7 @@
 </script>
 
 
-<Meta title="Bexis2/Core/Treeview" 
+<Meta title="Bexis2/Treeview" 
 component={Treeview} source="false"
 />
 
