@@ -1,17 +1,15 @@
 <script>
  import jQuery from 'jquery'
- import initDt from 'datatables.net-dt'
-
-	import { onMount } from 'svelte'
+ import 'datatables.net'
+ import { onMount } from 'svelte'
 
 let el;
- 
+
  onMount(() => {
-   //initDt()
-   // jQuery(el).DataTable()
+   jQuery(el).DataTable()
  })
 
- 
+
 
 </script>
 

@@ -1,11 +1,9 @@
 <script>
 	import jQuery from 'jquery'
-	import initDt from 'datatables.net-dt'
-	initDt()
-
+	import 'datatables.net-dt'
 	import DataTableHTML from './DataTableHTML.svelte'
 
 </script>
 
 <h1>Data in HTML</h1>
-<!--<DataTableHTML />-->
+<DataTableHTML />
