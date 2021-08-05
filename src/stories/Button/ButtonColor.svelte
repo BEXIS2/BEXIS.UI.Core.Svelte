@@ -4,14 +4,20 @@
 
   const colors= ['primary','secondary','success','danger','warning','info','light','dark'];
 
-  const classes= ['b2_button_function','b2_button_action'];
+  const classes= ['function','action'];
 
 </script>
 
 <h3>BEXIS2 </h3>
 
 {#each classes as c}
-  <Button class="{c}">{c}</Button><br/>
+  <Button class="b2-button {c}">{c}</Button><br/>
+{/each}
+
+<h3>Sveltestrap with bexis class</h3>
+
+{#each classes as c}
+  <Button class="{c}">{c}</Button> <br/>
 {/each}
 
 <h3>Sveltestrap</h3>

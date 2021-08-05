@@ -10,20 +10,69 @@
  import sourceOption from '!!raw-loader!./Options.svelte';
  import Example from '../Example.svelte'
 
+ let argTypes={
+    data: { control: "object" },
+    href: { control: "text" },
+    checkboxhref: { control: "text" },
+    target: { control: "text" },
+    showcheckbox: { control: "boolean" },
+    showcount: { control: "boolean" }
+  }
+
+
+  let data =[{
+      "label": "Test",
+      "description":"description of a",
+      "count": 2,
+      "value": "A",
+      "active":false,
+      "href":"http://www.google.de",
+      "items": [
+        {
+        "label": "A1",
+        "description":"description of a1",
+        "count": 1,
+        "value": "1",
+        "active":false,
+        "items": []
+        },
+        {
+        "label": "A2",
+        "description":"description of a2",
+        "count": 1,
+        "value": "2",
+        "active":false,
+        "items": [
+            {
+            "label": "underlaying",
+            "description":"description of underlaying",
+            "count": 1,
+            "value": "underlaying",
+            "active":false,
+            "items": []
+            }
+          ]
+        }
+      ]
+  }]
+
 </script>
 
 
 <Meta title="Bexis2/Treeview" 
-component={Treeview} source="false"
+component={Treeview} 
+argTypes={argTypes}
 />
 
 <Template let:args>
  <Treeview {...args}/>
 </Template>
 
-<Story name="Data"  >
+
+
+<Story name="Data">
  <Example title="Data" source={sourceData}>
-  <Data/> 
+  <Data /> 
   <p slot="info">
    This story shows all the colors of the different buttons.
   </p>
@@ -38,7 +87,8 @@ component={Treeview} source="false"
    </span>
   </Example>
   </Story>
- 
+
+  <Story name="Playground"></Story>
 
 
 

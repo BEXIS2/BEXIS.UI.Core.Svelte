@@ -23,6 +23,7 @@
      {#if source}
        <Col md={stacked ? 12 : 7}>
         <PrismCode class="language-html h-100">{source}</PrismCode>
+        <PrismCode class="language-aspnet h-100">private class text</PrismCode>
        </Col>
      {/if}
    </Row>

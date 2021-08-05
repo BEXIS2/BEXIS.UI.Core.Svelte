@@ -2,7 +2,7 @@
  import Treeview from '../../components/Treeview/Treeview.svelte'
 
 
- let data = [
+ export let data = [
     {
       "label": "A",
       "description":"description of a",
@@ -76,6 +76,6 @@
 
 </script>
 
-<Treeview {data} />
+<Treeview bind:data={data} />
 
 
