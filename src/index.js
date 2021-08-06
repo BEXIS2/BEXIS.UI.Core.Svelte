@@ -1,1 +1,2 @@
-export { default as Treeview } from './components/Treeview/Treeview.svelte';
+export { default as Button } from '../src/components/Button/Button.svelte';
+export { default as Treeview } from '../src/components/Treeview/Treeview.svelte';
