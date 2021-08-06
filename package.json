@@ -1,5 +1,5 @@
 {
-  "name": "@bexis2/svelte-bexis-core-ui",
+  "name": "@bexis2/svelte-bexis2-core-ui",
   "svelte": "src/index.js",
   "module": "dist/index.mjs",
   "main": "dist/index.js",
@@ -8,17 +8,12 @@
     "prepublishOnly": "npm run build",
     "init": "npm init --scope bexis2",
     "link": "npm link",
-    "storybook": "start-storybook -p 6006 -s ./storybook-static/",
+    "storybook": "start-storybook -p 6006 -s ./public/",
     "build-storybook": "build-storybook"
   },
   "devDependencies": {
     "@babel/core": "^7.14.8",
     "@rollup/plugin-node-resolve": "^9.0.0",
-    "@storybook/addon-actions": "^6.3.6",
-    "@storybook/addon-essentials": "^6.3.6",
-    "@storybook/addon-links": "^6.3.6",
-    "@storybook/addon-svelte-csf": "^1.1.0",
-    "@storybook/svelte": "^6.3.6",
     "babel-loader": "^8.2.2",
     "rollup": "^2.0.0",
     "rollup-plugin-svelte": "^6.0.0",
@@ -39,23 +34,18 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@storybook/addon-cssresources": "^6.2.9",
-    "datatables.net": "^1.10.25",
-    "datatables.net-dt": "^1.1.0",
     "fontawesome-svelte": "^2.0.1",
-    "jquery": "^3.6.0",
-    "prismjs": "^1.24.1",
-    "raw-loader": "^4.0.2",
     "svelte-fa": "^2.2.1",
     "sveltestrap": "^5.5.1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/BEXIS2/BEXIS.UI.Core.Svelte.git"
+    "url": "git+https://github.com/BEXIS2/svelte-bexis2-core-ui.git"
   },
   "author": "david schöne",
   "license": "GPL-3.0-or-later",
   "bugs": {
-    "url": "https://github.com/BEXIS2/BEXIS.UI.Core.Svelte/issues"
+    "url": "https://github.com/BEXIS2/svelte-bexis2-core-ui/issues"
   },
-  "homepage": "https://github.com/BEXIS2/BEXIS.UI.Core.Svelte#readme"
+  "homepage": "https://github.com/BEXIS2/svelte-bexis2-core-ui#readme"
 }
