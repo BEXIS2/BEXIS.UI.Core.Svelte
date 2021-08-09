@@ -1,5 +1,6 @@
 <script> 
- 
+
+  import { createEventDispatcher } from 'svelte';
   
 
   import { fade } from 'svelte/transition';
@@ -9,39 +10,33 @@
   import { faAngleDown } from '@fortawesome/free-solid-svg-icons'
   import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
 
-  export let href;
-  export let checkboxhref;
   export let showcheckbox;
   export let showcount;
-  export let target;
-
-  let localhref;
-  let localcheckboxhref;
 
   // set local varaibles reading from the item
   // you can e.g. use href instead of item.href
   export let item;
-  const { label, items, value, description, count } = item;
-
-  if(href!=null) localhref = href;
-  if(item.href!=null) localhref = item.href;
-
-  if(checkboxhref!=null) localcheckboxhref = checkboxhref;
-  if(item.checkboxhref!=null) localcheckboxhref = item.checkboxhref;
+  const { label, items, description, count } = item;
 
   $:active = item.active; 
   export let expand = false;
  
+  // create event dispatcher
+  const dispatch = createEventDispatcher();
+
   function clickHandler()
   {
       if(item.label != selected.label)selected.update(n=>n = item);
       active = !active;
+
+      dispatch('selectItem', item.value);
   }
 
   function clickCheckboxHandler()
   {
       active = !active;
       selected.update(n=>n = item);
+      dispatch('selectcheckbox', item.value);
   }
 
   const unsubscribe = selected.subscribe(value => {active = false;});
@@ -64,7 +59,7 @@
 
   {#if showcheckbox} <input type=checkbox bind:checked={active} on:click="{clickCheckboxHandler}">{/if}
 
-   <a href={localhref} class:active on:click="{clickHandler}" {target} > {label} </a>
+   <a class:active on:click="{clickHandler}"> {label} </a>
 
   {#if showcount}({count}) {/if}
 
@@ -77,7 +72,7 @@
 <div transition:fade >
   <ul>
   {#each items as item}
-    <li><svelte:self {item} {href} {checkboxhref} {showcount} {showcheckbox} {target} /></li>
+    <li><svelte:self {item} {showcount} {showcheckbox}  on:selectItem /></li>
   {/each}
   </ul>
 </div>

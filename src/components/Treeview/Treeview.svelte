@@ -2,13 +2,9 @@
   import Item from "./Treeviewitem.svelte";
 
   export let data;
-  export let href;
-  export let checkboxhref;
   export let showcheckbox;
   export let showcount;
-  export let target;
 
-  console.log(data);
 
 </script>
 
@@ -17,7 +13,7 @@
 {#if data}
   <ul>
     {#each data as item}
-      <li><Item {item} {href} {checkboxhref} {showcount} {showcheckbox} {target}  /></li>
+      <li><Item {item} {showcount} {showcheckbox}  on:selectItem/></li>
     {/each}
   </ul>
 {:else}
