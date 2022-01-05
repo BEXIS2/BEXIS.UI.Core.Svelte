@@ -1,24 +1,24 @@
 <script>
 import Fa from 'svelte-fa/src/fa.svelte'
-import { faFileAudio } from '@fortawesome/free-solid-svg-icons'
-import { faFileVideo } from '@fortawesome/free-solid-svg-icons'
-import { faFileWord } from '@fortawesome/free-solid-svg-icons'
-import { faFilePdf } from '@fortawesome/free-solid-svg-icons'
-import { faFileExcel } from '@fortawesome/free-solid-svg-icons'
-import { faFileCsv } from '@fortawesome/free-solid-svg-icons'
-import { faFileImage } from '@fortawesome/free-solid-svg-icons'
-import { faFileArchive } from '@fortawesome/free-solid-svg-icons'
+import { faFileAudio } from '@fortawesome/free-regular-svg-icons'
+import { faFileVideo } from '@fortawesome/free-regular-svg-icons'
+import { faFileWord } from '@fortawesome/free-regular-svg-icons'
+import { faFilePdf } from '@fortawesome/free-regular-svg-icons'
+import { faFileExcel } from '@fortawesome/free-regular-svg-icons'
+import { faFileAlt } from '@fortawesome/free-regular-svg-icons'
+import { faFileImage } from '@fortawesome/free-regular-svg-icons'
+import { faFileArchive } from '@fortawesome/free-regular-svg-icons'
 
  export let type = "";
  
 </script>
 
-{#if type.includes("excel")}
+{#if type.includes("excel") || type.includes("spreadsheetml")}
   <Fa icon={faFileExcel} />
 {/if}
 
 {#if type.includes("text")}
-  <Fa icon={faFileCsv} />
+  <Fa icon={faFileAlt} />
 {/if}
 
 {#if type.includes("image")}

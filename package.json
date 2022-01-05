@@ -30,10 +30,12 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.3",
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
+    "@fortawesome/free-regular-svg-icons": "^5.15.4",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@storybook/addon-cssresources": "^6.2.9",
     "fontawesome-svelte": "^2.0.1",
     "svelte-fa": "^2.2.1",
+    "svelte-file-dropzone": "0.0.16-dev.0",
     "sveltestrap": "^5.5.1"
   },
   "repository": {
