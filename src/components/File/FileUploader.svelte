@@ -10,6 +10,8 @@ import { faFileUpload } from '@fortawesome/free-solid-svg-icons'
 
 import FileInfo from './FileInfo.svelte'
 
+let bt
+
 export let id=0;
 export let version=1;
 
@@ -30,7 +32,7 @@ $:model = null;
 const dispatch = createEventDispatcher();
 
 // dropzone model
-let files = {
+$:files = {
     accepted: [],
     rejected: []
   };
@@ -66,7 +68,15 @@ function handleFilesSelect(e) {
   files.accepted = [...files.accepted, ...acceptedFiles];
   files.rejected = [...files.rejected, ...fileRejections];
 
-  console.log(files.accepted);
+  if(fileRejections.length>0)
+  {
+    alert("the dropped file is not supported");
+    console.log("the dropped file is not supported");
+
+    // list up the errors somewhere
+  }
+
+  document.getElementById("submit").click(); 
 
 }
 
@@ -81,6 +91,8 @@ function handleRemoveAll()
 }
 
 async function handleSubmit() {
+
+    console.log("start submit");
 
     let url = submit+"?id="+id;
   
@@ -97,8 +109,6 @@ async function handleSubmit() {
         body: formData
       });
       console.log(response);
-      alert( response.status)
-
       if(response.status==200)
       {
         dispatch('submit');
@@ -109,31 +119,30 @@ async function handleSubmit() {
   }
 
 </script>
-<form id="fileuploader" on:submit|preventDefault={handleSubmit}>
+<form on:submit|preventDefault={handleSubmit}>
     {#if model}
       <!--if model exist  -->
       <Row>
         <Dropzone
-          on:drop={handleFilesSelect}>
+          on:drop={handleFilesSelect} 
+          accept={model.Accept}
+          multipe={model.multipe}>
           <Fa icon={faFileUpload}/>
           <span>Drag 'n' drop some files here, or click to select files</span>
-    
+          <span>
+            {#if model.Accept}
+              {#each model.Accept as ext}
+              {ext} 
+              {/each}
+            {/if}
+          </span>
         </Dropzone>
       </Row> 
 
-      <Row>
-  
-        {#each files.accepted as item, index}
-         
-          <Row>
-            <Col xs=5><FileInfo {...item} /></Col>
-            <Col xs=1><Button size="sm" on:click={e => handleRemoveFile(e, index)}><Fa icon={faTrash}/></Button></Col>
-          </Row>
-
-        {/each}
-      </Row>
-      <Button color="primary" type="submit" disabled={(files.accepted.length==0)} ><Fa icon={faSave}/></Button>      
+      <Button id="submit" color="primary" type="submit" style="display:none"><Fa icon={faSave}/></Button>      
       
+
+
     {:else} <!-- while data is not loaded show a loading information -->
 
     <Spinner color="info" size="sm" type ="grow" text-center />
