@@ -8,6 +8,8 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { faSave } from '@fortawesome/free-regular-svg-icons'
 import { faFileUpload } from '@fortawesome/free-solid-svg-icons'
 
+import { Api } from '../../services/Api'
+
 import FileInfo from './FileInfo.svelte'
 
 let bt
@@ -54,12 +56,10 @@ async function load()
   let url = start+"?id="+id+"&version="+version;
 
   // load menu froms server
-  const res = await fetch(url);
+  const res = await Api.get(url);
   model = await res.json();
   
   console.log(model);
-
-  //setup form
 
 }
 
@@ -104,10 +104,7 @@ async function handleSubmit() {
           formData.append(files.accepted[i].name, files.accepted[i]);  
       }  
 
-      const response = await fetch(url, {
-        method: "POST",
-        body: formData
-      });
+      const response = await Api.post(url, formData);
       console.log(response);
       if(response.status==200)
       {
