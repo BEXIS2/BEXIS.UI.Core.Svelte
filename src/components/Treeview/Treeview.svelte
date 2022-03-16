@@ -33,7 +33,7 @@
   padding:0; 
   list-style-position:inside}
 
-:global(div){border-width:0;background:0;white-space:nowrap;overflow:auto;}
-
+/* :global(div){border-width:0;background:0;white-space:nowrap;overflow:auto;}
+ */
 
 </style>

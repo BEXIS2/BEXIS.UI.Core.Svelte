@@ -13,12 +13,7 @@ const apiRequest = (method, url, request) => {
     const axiosAPI = axios.create({
       baseURL : host
     });
-
-
-   console.log("setup apis");
-   console.log(host,username,password);
-   console.log(url);
-
+    
     const headers = {
         authorization: 'Basic ' + btoa(username + ":" + password)
     };

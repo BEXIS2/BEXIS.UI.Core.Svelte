@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store'
 
-export let host = "";
+export let host = "window.location.origin";
 export let username = "";
 export let password = "";
 

@@ -10,10 +10,6 @@ import { faFileUpload } from '@fortawesome/free-solid-svg-icons'
 
 import { Api } from '../../services/Api'
 
-import FileInfo from './FileInfo.svelte'
-
-let bt
-
 export let id=0;
 export let version=1;
 
@@ -27,9 +23,15 @@ export let start="";
 //action to save selected file 
 export let submit="";
 
+export let context="";
 
 export let data=null;
+
+
 $:model = null;
+$:submitBt ="submit";
+
+let maxSize=0;
 
 const dispatch = createEventDispatcher();
 
@@ -46,20 +48,25 @@ onMount(async () => {
   }
   else
   {
-    model = data;    
+    model = data;  
   }
+
+  submitBt += context;
+  maxSize = (model.maxSize*1024)*1024
+
+  console.log("load fileuploader");
+  console.log(model);
+  console.log("----");
 })
 
 // load modal from server 
 async function load()
 {
   let url = start+"?id="+id+"&version="+version;
-
+  
   // load menu froms server
   const res = await Api.get(url);
   model = await res.json();
-  
-  console.log(model);
 
 }
 
@@ -70,32 +77,53 @@ function handleFilesSelect(e) {
 
   if(fileRejections.length>0)
   {
-    alert("the dropped file is not supported");
-    console.log("the dropped file is not supported");
+    //alert("the dropped file is not supported");
+    console.log("the dropped file is not supported.");
+    console.log(files.rejected);
 
-    // list up the errors somewhere
+    let messages = [];
+    
+    for (let index = 0; index < fileRejections.length; index++) {
+      const element = fileRejections[index];
+      messages.push(getErrorMessage(element))
+    }
+
+    console.log(messages);
+    
+    dispatch("error", {messages})
+    //list up the errors somewhere
+    files.rejected = []
   }
 
-  document.getElementById("submit").click(); 
+  if(acceptedFiles.length>0)
+  {
+    document.getElementById(submitBt).click(); 
+  }
 
 }
 
-function handleRemoveFile(e, index) {
-    files.accepted.splice(index, 1);
-    files.accepted = [...files.accepted];
+function getErrorMessage(rejected)
+{
+  let message = "";
+  message = rejected.file.path+" : ";
+  let errors = rejected.errors;
+  for (let index = 0; index < errors.length; index++) {
+    const error = errors[index];
+    message+=error.message
   }
 
-function handleRemoveAll()
-{
-  files.accepted = [];
+  return message;
 }
 
 async function handleSubmit() {
 
-    console.log("start submit");
+    dispatch('submit')
 
     let url = submit+"?id="+id;
-  
+
+    console.log(model);
+    console.log(url);
+
     if (files.accepted.length > 0) {
 
       const formData = new FormData();
@@ -103,42 +131,48 @@ async function handleSubmit() {
       for (var i = 0; i < files.accepted.length; i++) {  
           formData.append(files.accepted[i].name, files.accepted[i]);  
       }  
-
+      
       const response = await Api.post(url, formData);
       console.log(response);
       if(response.status==200)
       {
-        dispatch('submit');
+        dispatch('submited');
+
+        let message = files.accepted.length +" is/are uploaded";
+        dispatch('success', {text:message})
+
         files.accepted = [];
+
       }
-      
     }
   }
 
 </script>
+
 <form on:submit|preventDefault={handleSubmit}>
     {#if model}
       <!--if model exist  -->
       <Row>
         <Dropzone
           on:drop={handleFilesSelect} 
-          accept={model.Accept}
-          multipe={model.multipe}>
-          <Fa icon={faFileUpload}/>
-          <span>Drag 'n' drop some files here, or click to select files</span>
-          <span>
-            {#if model.Accept}
-              {#each model.Accept as ext}
-              {ext} 
+          accept={model.accept}
+          multiple={model.multiple}
+          {maxSize}>
+
+          <b style="font-size:xx-large"><Fa icon={faFileUpload}/></b>
+          <span><b>Drag 'n' drop some files here, or click to select files</b>
+          <b>max file : {model.maxSize} mb</b></span>
+          <p>
+            {#if model.accept}
+              {#each model.accept as ext}
+              {ext} ,   
               {/each}
             {/if}
-          </span>
+          </p>
         </Dropzone>
       </Row> 
 
-      <Button id="submit" color="primary" type="submit" style="display:none"><Fa icon={faSave}/></Button>      
-      
-
+      <Button id="{submitBt}" color="primary" style="display:none" ><Fa icon={faSave}/></Button>      
 
     {:else} <!-- while data is not loaded show a loading information -->
 

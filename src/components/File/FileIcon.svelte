@@ -44,10 +44,5 @@ import { faFileArchive } from '@fortawesome/free-regular-svg-icons'
 {#if type.includes("zip")}
   <Fa icon={faFileArchive} />
 {/if}
-<style>
-  
-div{
-  font-size: large;
-}
-</style>
+
 
