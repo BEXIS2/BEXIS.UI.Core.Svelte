@@ -54,9 +54,6 @@ onMount(async () => {
   submitBt += context;
   maxSize = (model.maxSize*1024)*1024
 
-  console.log("load fileuploader");
-  console.log(model);
-  console.log("----");
 })
 
 // load modal from server 
