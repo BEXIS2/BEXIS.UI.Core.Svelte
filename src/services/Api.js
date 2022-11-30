@@ -1,36 +1,72 @@
 // Api.js
-import axios from "axios";
+// import axios from "axios";
 import { host, username, password } from "../stores/apistore";
 
-console.log("setup axios")
-
+console.log("setup fetch")
 
 // implement a method to execute all the request from here.
 const apiRequest = (method, url, request) => {
  
-   
-    // Create a instance of axios to use the same base url.
-    const axiosAPI = axios.create({
-      baseURL : host
-    });
-    
-    const headers = {
-        authorization: 'Basic ' + btoa(username + ":" + password)
-    };
-    
-    //using the axios instance to perform the request that received from each http method
-    return axiosAPI({
-        method,
-        url,
-        data: request,
-        headers
-      }).then(res => {
+   console.log("url",url);
+   console.log("host",host);
 
-        return Promise.resolve(res);
-      })
-      .catch(err => {
-        return Promise.reject(err);
-      });
+   const destination = host+url
+
+   console.log("destination",destination);
+
+
+    const headers = {
+          authorization: 'Basic ' + btoa(username + ":" + password)
+      };
+
+    return fetch(destination,{
+      method,
+      headers,
+      body:request
+    })
+    // .then(response => response.json())
+    .then(response => response.json())
+    .catch(err => {
+      //console.log("err",err);
+      return Promise.reject(err);
+    });
+
+    
+    
+    
+    // .then(res => {
+
+    //   console.log("res",res.json());
+    //   return res;
+    // })
+    // .catch(err => {
+    //   //console.log("err",err);
+    //   return Promise.reject(err);
+    // });
+
+   
+    // // Create a instance of axios to use the same base url.
+    // const axiosAPI = axios.create({
+    //   baseURL : host
+    // });
+    
+    // const headers = {
+    //     authorization: 'Basic ' + btoa(username + ":" + password)
+    // };
+    
+    // //using the axios instance to perform the request that received from each http method
+    // return axiosAPI({
+    //     method,
+    //     url,
+    //     data: request,
+    //     headers
+    //   }).then(res => {
+
+    //     return Promise.resolve(res);
+    //   })
+    //   .catch(err => {
+    //     return Promise.reject(err);
+    //   });
 };
 
 // function to execute the http get request
