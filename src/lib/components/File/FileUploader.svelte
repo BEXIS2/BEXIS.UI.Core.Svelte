@@ -1,6 +1,7 @@
-<script>
-import Dropzone from "svelte-file-dropzone";
-import Fa from 'svelte-fa/src/fa.svelte'
+<script type="ts">
+
+import Dropzone from "svelte-file-dropzone/src/components/Dropzone.svelte";
+import Fa from 'svelte-fa/src/fa.svelte';
 
 import { Spinner, Button, Row,Col, Input } from 'sveltestrap';
 import { createEventDispatcher } from 'svelte';
@@ -8,12 +9,14 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { faSave } from '@fortawesome/free-regular-svg-icons'
 import { faFileUpload } from '@fortawesome/free-solid-svg-icons'
 
-import { Api } from '../../services/Api'
+import { Api } from '../../services/Api.js'
+import type { FileUploader, FileInfo, Files } from '../../models/Model.js'
 
 export let id=0;
 export let version=1;
 
 import { onMount }from 'svelte'
+
 
 // export let description="";
 // export let status=0;
@@ -25,24 +28,23 @@ export let submit="";
 
 export let context="";
 
-export let data=null;
+export let data:FileUploader | undefined;
 
-
-$:model = null;
+$:model=data;
 $:submitBt ="submit";
 
 let maxSize=0;
 
 const dispatch = createEventDispatcher();
 
+let fx:FileInfo[]
+
+let f:Files
 // dropzone model
-$:files = {
-    accepted: [],
-    rejected: []
-  };
+$:files = f;
 
 onMount(async () => {
-  if(data==null)
+  if(!data)
   {
     load();
   }
@@ -51,8 +53,11 @@ onMount(async () => {
     model = data;  
   }
 
-  submitBt += context;
-  maxSize = (model.maxSize*1024)*1024
+  if(model)
+  {
+    submitBt += context;   
+    maxSize = (model.maxSize*1024)*1024
+  }
 
 })
 
@@ -67,8 +72,10 @@ async function load()
 
 }
 
-function handleFilesSelect(e) {
+function handleFilesSelect(e:any) {
+
   const { acceptedFiles, fileRejections } = e.detail;
+
   files.accepted = [...files.accepted, ...acceptedFiles];
   files.rejected = [...files.rejected, ...fileRejections];
 
@@ -94,12 +101,12 @@ function handleFilesSelect(e) {
 
   if(acceptedFiles.length>0)
   {
-    document.getElementById(submitBt).click(); 
+      document.getElementById(submitBt)?.click(); 
   }
 
 }
 
-function getErrorMessage(rejected)
+function getErrorMessage(rejected:any)
 {
   let message = "";
   message = rejected.file.path+" : ";
@@ -130,7 +137,7 @@ async function handleSubmit() {
       }  
       
       const response = await Api.post(url, formData);
-      console.log(response);
+
       if(response.status==200)
       {
         dispatch('submited');
@@ -150,7 +157,8 @@ async function handleSubmit() {
     {#if model}
       <!--if model exist  -->
       <Row>
-        <Dropzone
+
+        <Dropzone 
           on:drop={handleFilesSelect} 
           accept={model.accept}
           multiple={model.multiple}
@@ -167,14 +175,16 @@ async function handleSubmit() {
             {/if}
           </p>
         </Dropzone>
+
       </Row> 
 
       <Button id="{submitBt}" color="primary" style="display:none" ><Fa icon={faSave}/></Button>      
 
     {:else} <!-- while data is not loaded show a loading information -->
 
-    <Spinner color="info" size="sm" type ="grow" text-center />
+    <Spinner color="info" size="sm" type ="grow" />
     {/if}
 
 </form>
+
 
