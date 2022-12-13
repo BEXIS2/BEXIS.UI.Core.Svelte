@@ -17,7 +17,7 @@ usernameStore.subscribe(value => {
  username = value;
 });
 
-usernameStore.subscribe(value => {
+passwordStore.subscribe(value => {
  password = value;
 });
 

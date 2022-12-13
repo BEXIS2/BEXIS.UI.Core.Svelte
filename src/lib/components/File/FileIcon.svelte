@@ -1,5 +1,6 @@
 <script>
-import Fa from 'svelte-fa/src/fa.svelte'
+
+import {Fa} from 'svelte-fa/src/index.js'
 import { faFileAudio } from '@fortawesome/free-regular-svg-icons'
 import { faFileVideo } from '@fortawesome/free-regular-svg-icons'
 import { faFileWord } from '@fortawesome/free-regular-svg-icons'

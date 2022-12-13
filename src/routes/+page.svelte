@@ -1,23 +1,30 @@
-<script>
+<script lang="ts">
 import {onMount} from 'svelte'
-import {host, setApiConfig, FileIcon} from '@bexis2/bexis2-lib-test'
+import {ListView} from "@bexis2/svelte-bexis2-core-ui"
+
+
+import {host, setApiConfig, FileIcon} from '@bexis2/svelte-bexis2-core-ui'
+import FileInfo from '$lib/components/File/FileInfo.svelte';
+import type {user} from "$lib/models/Models.js";
 
 $:h="no host";
 
 onMount(async () => {
 
+ 
  console.log(window.location.origin);
  setApiConfig(window.location.origin,"david","123")
  h = host
 
+let u:user = {name:"david" }
+
+console.log(u);
+
 });
+
+let u:user;
 
 </script>
 
-<h1>Welcome to your library project</h1>
-<FileIcon type="audio" />
-<h1>{h}</h1>
+<ListView></ListView>
 
-
-<p>Create your package using @sveltejs/package and preview/showcase your work with SvelteKit</p>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>

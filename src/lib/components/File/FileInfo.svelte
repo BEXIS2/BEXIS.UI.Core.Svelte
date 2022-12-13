@@ -8,6 +8,7 @@ export let type = "";
 export let size = "";
 
 </script>
+
 <div style="font-size:{size}">
  <FileIcon {type} /> {name}
 </div>

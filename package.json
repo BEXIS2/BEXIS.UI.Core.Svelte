@@ -1,6 +1,6 @@
 {
   "name": "@bexis2/svelte-bexis2-core-ui",
-  "version": "0.7.0",
+  "version": "0.7.2",
   "scripts": {
     "dev": "vite dev",
     "build": "svelte-kit sync && svelte-package --watch",
@@ -36,13 +36,14 @@
   "type": "module",
   "description": "Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).",
   "main": "svelte.config.js",
-  "module": "./src/lib/index.js",
+  "module": "./src/lib/index.ts",
   "types": "./src/lib/index.d.ts",
   "directories": {
     "test": "tests"
   },
   "dependencies": {
     "@bexis2/bexis2-lib-test": "file:./package",
+    "@bexis2/svelte-bexis2-core-ui": "file:package",
     "@fortawesome/fontawesome-free": "^6.2.1",
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
     "@fortawesome/free-regular-svg-icons": "^6.2.1",
@@ -215,6 +216,15 @@
     "yallist": "^4.0.0",
     "yocto-queue": "^0.1.0"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "David Schöne",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BEXIS2/svelte-bexis2-core-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/BEXIS2/svelte-bexis2-core-ui/issues"
+  },
+  "homepage": "https://github.com/BEXIS2/svelte-bexis2-core-ui#readme"
+
 }

@@ -51,7 +51,7 @@ const apiRequest = (method:string, url:string, request:string|FormData) => {
 const get = (url:string, request = "") => apiRequest("get",url,request);
 
 // function to execute the http delete request
-const deleteRequest = (url:string, request:string) =>  apiRequest("delete", url, request);
+const deleteRequest = (url:string, request:string|JSON) =>  apiRequest("delete", url, request);
 
 // function to execute the http post request
 const post = (url:string, request:string|FormData) => apiRequest("post", url, request);

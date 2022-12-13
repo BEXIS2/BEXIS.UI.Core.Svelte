@@ -1,7 +1,10 @@
-<script type="ts">
+<script lang="ts" >
 
-import Dropzone from "svelte-file-dropzone/src/components/Dropzone.svelte";
-import Fa from 'svelte-fa/src/fa.svelte';
+import type { FileUploaderModel, FileInfo, Files} from '../../models/Models.js'
+
+
+import {DropZone} from "svelte-file-dropzone/src/index.js";
+import {Fa} from 'svelte-fa/src/index.js'
 
 import { Spinner, Button, Row,Col, Input } from 'sveltestrap';
 import { createEventDispatcher } from 'svelte';
@@ -10,16 +13,15 @@ import { faSave } from '@fortawesome/free-regular-svg-icons'
 import { faFileUpload } from '@fortawesome/free-solid-svg-icons'
 
 import { Api } from '../../services/Api.js'
-import type { FileUploader, FileInfo, Files } from '../../models/Model.js'
 
 export let id=0;
 export let version=1;
 
-import { onMount }from 'svelte'
-
+import { onMount } from 'svelte'
 
 // export let description="";
 // export let status=0;
+
 
 //action to load fileupload model
 export let start="";
@@ -28,9 +30,9 @@ export let submit="";
 
 export let context="";
 
-export let data:FileUploader | undefined;
+export let data:FileUploaderModel | undefined;
 
-$:model=data;
+$:model= data;
 $:submitBt ="submit";
 
 let maxSize=0;
@@ -158,7 +160,7 @@ async function handleSubmit() {
       <!--if model exist  -->
       <Row>
 
-        <Dropzone 
+        <DropZone 
           on:drop={handleFilesSelect} 
           accept={model.accept}
           multiple={model.multiple}
@@ -174,7 +176,7 @@ async function handleSubmit() {
               {/each}
             {/if}
           </p>
-        </Dropzone>
+        </DropZone>
 
       </Row> 
 
@@ -185,6 +187,6 @@ async function handleSubmit() {
     <Spinner color="info" size="sm" type ="grow" />
     {/if}
 
-</form>
+</form> 
 
 

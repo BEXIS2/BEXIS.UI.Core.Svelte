@@ -1,5 +1,5 @@
 
-export type FileInfo = {
+export interface FileInfo {
  name:string,
  type:string,
  lenght:number,
@@ -9,7 +9,7 @@ export type FileInfo = {
 }
 
 
-export type FileUploader = {
+export interface FileUploaderModel{
  accept:string[],
  existingFiles:FileInfo[],
  descriptionType:number,
@@ -18,9 +18,12 @@ export type FileUploader = {
  lastModification:Date
 }
 
-export type Files = {
+export interface Files {
  accepted:any[],
  rejected:any[]
 }
 
 
+export type user = {
+ name:string
+}
